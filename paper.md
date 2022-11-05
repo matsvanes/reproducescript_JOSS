@@ -16,7 +16,7 @@ authors:
     orcid: 0000-0002-2018-3364
     affiliation: 1
   - name: Jan-Mathijs Schoffelen
-  - orcid: 0000-0003-0923-6610
+    orcid: 0000-0003-0923-6610
     affiliation: 1
   - name: Robert Oostenveld
     orcid: 0000-0002-1974-1293
