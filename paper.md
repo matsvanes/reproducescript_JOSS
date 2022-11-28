@@ -28,7 +28,7 @@ affiliations:
    index: 2
  - NatMEG, Karolinska Institutet, Sweden
    index: 3
-date: 5 November 2022
+date: 28 November 2022
 bibliography: reproducescript_bib_JOSS.bib
 
 
@@ -37,16 +37,16 @@ bibliography: reproducescript_bib_JOSS.bib
 
 # Summary
 
-FieldTrip `@oostenveldFieldTripOpenSource2011` -> "Oostenveld et al. (2011)" is a `@MATLAB2020` -> "MATLAB" toolbox for the analysis of electroencephalography (EEG) and magnetoencephelography (MEG) data. Typically, a researcher will create an analysis pipeline by scripting a sequence of high level FieldTrip functions. Depending on researcher coding style, readability and reproducibility of the custom written analysis pipeline is variable. `reproducescript` is a new functionality in the toolbox that allows complete reproduction of MATLAB-based scripts with little extra efforts on behalf of the user. Starting from the researchers' idiosyncratic pipeline scripts, this new functionality allows researchers to automatically create and publish analysis pipeline scripts in a standardized format, along with all relevant intermediate data and final results. This approach may prove useful as a general framework for increasing scientific reproducibility, applicable well beyond the FieldTrip toolbox.
+FieldTrip `@Oostenveld2011` is a `@MATLAB2020` toolbox for the analysis of electroencephalography (EEG) and magnetoencephelography (MEG) data. Typically, a researcher will create an analysis pipeline by scripting a sequence of high level FieldTrip functions. Depending on researcher coding style, readability and reproducibility of the custom written analysis pipeline is variable. `reproducescript` is a new functionality in the toolbox that allows complete reproduction of MATLAB-based scripts with little extra efforts on behalf of the user. Starting from the researchers' idiosyncratic pipeline scripts, this new functionality allows researchers to automatically create and publish analysis pipeline scripts in a standardized format, along with all relevant intermediate data and final results. This approach may prove useful as a general framework for increasing scientific reproducibility, applicable well beyond the FieldTrip toolbox.
 
 
 # Statement of Need
 
-Unsound scientific practices have led to a replication crisis in psychological science in recent years `[@ opensciencecollaborationEstimatingReproducibilityPsychological2015; @ simmonsFalsePositivePsychologyUndisclosed2011]` -> "(Open Science Collaboration, 2015; Simmons et al., 2011)", and it is unlikely that cognitive neuroscience is an exception `[@buttonPowerFailureWhy2013; @gilmoreProgressOpennessTransparency2017; @szucsEmpiricalAssessmentPublished2017]` -> "(Button et al., 2013; Gilmore et al., 2017; Szucs et al., 2017)". One way to combat this crisis is through increasing methodological transparency `[@gilmoreProgressOpennessTransparency2017; @gleesonCommitmentOpenSource2017; @zwaanMakingReplicationMainstream2017]` -> (Gilmore et al., 2017; Gleeson et al., 2017; Zwaan et al., 2017), but the increased sophistication of experimental designs and analysis methods results in data analysis getting so complex that the methods sections of manuscripts in most journals are too short to represent the analysis in sufficient detail. Therefore, researchers are increasingly encouraged to share their data and analysis pipelines along with their published results `@gleesonCommitmentOpenSource2017` -> (Gleeson et al., 2017). However, analysis scripts are often written by researchers without formal training in computer science, resulting in the quality and readability of these analysis scripts to be highly dependent on individual coding expertise and style. Even though the computational outcomes and interpretation of the results can be correct, the inconsistent style and quality of analysis scripts make reviewing the details of the analysis difficult for other researchers, even those directly involved in the study. The quality of analysis scripts might thus compromise the reproducibility of obtained results. The purpose of `reproducescript` is to automatically create analysis pipeline scripts in a standardized format, along with all relevant intermediate data, that are executable, readable, and therefore fully reproducible, and that can directly be shared with peers.
+Unsound scientific practices have led to a replication crisis in psychological science in recent years (`[@ OpenScienceCollaboration2015; @ Simmons2011]`), and it is unlikely that cognitive neuroscience is an exception (`[@Button2013; @Gilmore2017; @Szucs2017]`). One way to combat this crisis is through increasing methodological transparency (`[@Gilmore2017; @Gleeson2017; @Zwaan2017]`), but the increased sophistication of experimental designs and analysis methods results in data analysis getting so complex that the methods sections of manuscripts in most journals are too short to represent the analysis in sufficient detail. Therefore, researchers are increasingly encouraged to share their data and analysis pipelines along with their published results `@Gleeson2017`. However, analysis scripts are often written by researchers without formal training in computer science, resulting in the quality and readability of these analysis scripts to be highly dependent on individual coding expertise and style. Even though the computational outcomes and interpretation of the results can be correct, the inconsistent style and quality of analysis scripts make reviewing the details of the analysis difficult for other researchers, even those directly involved in the study. The quality of analysis scripts might thus compromise the reproducibility of obtained results. The purpose of `reproducescript` is to automatically create analysis pipeline scripts in a standardized format, along with all relevant intermediate data, that are executable, readable, and therefore fully reproducible, and that can directly be shared with peers.
 
 # State of the field
 
-A number of strategies have been proposed to enhance the reproducibility of analysis pipelines and scientific results. One option to improve reproducibility and efficiency through reuse of code is through automation using pipeline systems (e.g. Taverna, Galaxy, LONI, PSOM, Nipype, Brainlife; (10–15) or batch scripts (e.g. SPM’s matlabbatch (16)). Generally, these provide the researcher with tools to construct an analysis pipeline, manage the execution of the steps in the pipeline and, to a varying degree, handle data. 
+A number of strategies have been proposed to enhance the reproducibility of analysis pipelines and scientific results. One option to improve reproducibility and efficiency through reuse of code is through automation using pipeline systems (e.g. Taverna, Galaxy, LONI, PSOM, Nipype, Brainlife; `[@Afgan2018; @Bellec2012; @Gorgolewski2011; @Oinn2004; @Pestilli2017; @Rex2003]` or batch scripts (e.g. SPM’s matlabbatch `@Ashburner2020`). Generally, these provide the researcher with tools to construct an analysis pipeline, manage the execution of the steps in the pipeline and, to a varying degree, handle data. 
 
 Some drawbacks of pipeline systems in general are the following: they require the researcher to learn how the pipeline software works on top of learning the analysis itself; the execution requires extra software to be installed, or requires moving the execution from a local computer to an online (cluster or cloud-based) system; they do not allow interactive analysis steps; and the flexibility of pipeline systems is limited. For example, MNE-Python, a widely used Python package for the analysis of electrophysiology data, has recently implemented the MNE-BIDS-Pipeline, which produces a standardized analysis pipeline. However, the analysis steps that are incorporated in this pipeline, as well as their order, is considerably limited compared to the full breadth of the MNE-Python package. Furthermore, many researchers use MATLAB for analysing their data, which is incompatible with this Python based software package. 
 
@@ -92,7 +92,9 @@ The new functionality we propose, called *reproducescript*, is enabled by the us
 
 `ft_default` is the structure in which global configuration defaults are stored; it is used throughout all FieldTrip functions and global options at the start of the function are merged with the user-supplied options in the `cfg` structure specific to the function. 
 
-The directory containing the reproducible analysis pipeline is structured as below. The standardized script is in `script.m`, all the data files are saved with a unique identifier to which is referred in `script.m`, and `hashes.mat` contains MD5 hashes for bookkeeping all input and output files. It furthermore allows any researcher to check the integrity of all the intermediate and final result files of the pipeline.
+The directory containing the reproducible analysis pipeline is structured as below. The standardized script is in `script.m`, which is shown below the directory structure. All the data files are saved with a unique identifier to which is referred in `script.m`, and `hashes.mat` contains MD5 hashes for bookkeeping all input and output files. It furthermore allows any researcher to check the integrity of all the intermediate and final result files of the pipeline.
+
+directory:
 
 	reproduce/
 		script.m
@@ -100,14 +102,48 @@ The directory containing the reproducible analysis pipeline is structured as bel
 		unique_identifier1_ft_preprocessing_input.mat
 		unique_identifier1_ft_preprocessing_output.mat
 		...
-		
 
+`script.m`:
 
-We refer the reader to the extended examples mentioned above for further details.
+	%%
+	
+	cfg = [];
+	cfg.dataset = 'Subject01.ds';
+	cfg.trialdef.eventtype = 'backpanel trigger';
+	cfg.trialdef.eventvalue = 3;
+	cfg.trialdef.prestim = 1;
+	cfg.trialdef.poststim = 2;
+	
+	cfg.showlogo = 'yes';
+	cfg.tracktimeinfo = 'yes';
+	cfg.trackmeminfo = 'yes';
+	cfg.datafile = 'Subject01.ds/Subject01.meg4';
+	cfg.headerfile = 'Subject01.ds/Subject01.res4';
+	cfg.dataformat = 'ctf_meg4';
+	cfg.headerformat = 'ctf_res4';
+	cfg.trialfun = 'ft_trialfun_general';
+	cfg.representation = [];
+	cfg.trl = 'reproduce/20221128T140217_ft_preprocessing_largecfginput_trl.mat';
+	cfg.outputfile = { 'reproduce/20221128T140217_ft_preprocessing_output_data.mat' };
+	ft_preprocessing(cfg);
+	
+	%%
+	
+	% a new input variable is entering the pipeline here: 20221128T140224_ft_timelockanalysis_input_data.mat
+	
+	cfg = [];
+	cfg.showlogo = 'yes';
+	cfg.tracktimeinfo = 'yes';
+	cfg.trackmeminfo = 'yes';
+	cfg.inputfile = { 'reproduce/20221128T140224_ft_timelockanalysis_input_data.mat' };
+	cfg.outputfile = { 'reproduce/20221128T140232_ft_timelockanalysis_output_timelock.mat' };
+	ft_timelockanalysis(cfg);
+	
+Because here we used *reproducescript* for a simple pipeline containing only three function calls, the standardized script does not look much different. For more complex analysis pipelines the differences with the original scripts tend to be larger. We refer the reader to the extended examples mentioned above for further details.
 
 # Acknowledgements
 
-The authors would like to thank Lau Andersen for publishing his original data and analysis scripts in `@andersenGroupAnalysisFieldTrip2018`  ->  "Andersen et al. (2018)" and his help in executing the pipeline.
+The authors would like to thank Lau Andersen for publishing his original data and analysis scripts in `@Andersen2018` and his help in executing the pipeline.
 
 - Author MVE is supported by The Netherlands Organisation for Scientific Research (NWO Vidi: 864.14.011), and Wellcome Trust (215573/Z/19/Z). 
 - Author ES is supported by The Netherlands Organisation for Scientific Research (NWO Veni: 016.Veni.198).
