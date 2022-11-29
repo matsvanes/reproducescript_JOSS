@@ -147,7 +147,7 @@ The authors would like to thank Lau Andersen for publishing his original data an
 
 - Author MVE is supported by The Netherlands Organisation for Scientific Research (NWO Vidi: 864.14.011), and Wellcome Trust (215573/Z/19/Z). 
 - Author ES is supported by The Netherlands Organisation for Scientific Research (NWO Veni: 016.Veni.198).
-- Author JMS is supported by
+- Author JMS is supported by The Netherlands Organisation for Scientific Research (NWO Vidi: 864.14.011).
 - Author RO is supported by 
 
 # References
