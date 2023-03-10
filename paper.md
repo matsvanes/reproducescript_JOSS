@@ -31,7 +31,7 @@ affiliations:
  - name: NatMEG, Karolinska Institutet, Stockholm, Sweden
    index: 4
 date: 10 March 2023
-bibliography: reproducescript_bib_JOSS.bib
+bibliography: paper.bib
 
 
 
