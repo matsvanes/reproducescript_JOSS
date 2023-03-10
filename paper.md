@@ -11,7 +11,7 @@ tags:
 authors:
   - name: Mats W.J. van Es
     orcid: 0000-0002-7133-509X
-    affiliation: 1, 2
+    affiliation: 1, 2, 3
   - name: Eelke Spaak
     orcid: 0000-0002-2018-3364
     affiliation: 1
@@ -20,15 +20,17 @@ authors:
     affiliation: 1
   - name: Robert Oostenveld
     orcid: 0000-0002-1974-1293
-    affiliation: 1, 3
+    affiliation: 1, 4
 affiliations:
  - name: Donders Institute for Brain, Cognition and Behaviour, Radboud University 	Nijmegen, The Netherlands
    index: 1
- - name: Oxford Centre for Human Brain Activity, University of Oxford, United Kingdom
+ - name: Oxford Centre for Human Brain Activity, Department of Psychiatry, University of 	Oxford, United Kingdom
    index: 2
- - NatMEG, Karolinska Institutet, Sweden
+ - name: Wellcome Centre for Integrative Neuroimaging, University of Oxford, Oxford, United 	Kingdom
    index: 3
-date: 28 November 2022
+ - name: NatMEG, Karolinska Institutet, Stockholm, Sweden
+   index: 4
+date: 10 March 2023
 bibliography: reproducescript_bib_JOSS.bib
 
 
